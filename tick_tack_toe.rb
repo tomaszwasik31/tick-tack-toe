@@ -1,6 +1,6 @@
 class Game
   def initialize
-    @round = 0
+    @round = 1
     @mark = 'X'
     @array_grid = Array(1..9)
     @mark_index = 1
@@ -9,7 +9,7 @@ class Game
   end
 
   def message_round
-    puts "This is round #{@round} Please choose number to insert #{@mark}"
+    puts "\nThis is round #{@round} Please choose number to insert #{@mark}"
   end
 
   def print_3x3
@@ -43,11 +43,16 @@ class Game
   end
 
   def draw?
-    if @round > 9
-      puts "\nGame draw, play again or press ctr+z to close a game.... Or play again \n"
+    if @round > 10
       @game_draw = true
-      print_3x3
+      message_draw
     end
+  end
+
+  def message_draw
+    puts "           \nGame draw!
+    Play again or press ctr+z to close a game."
+    print_3x3
   end
 
   def won?
@@ -66,9 +71,10 @@ class Game
 
   def message_won
     change_mark
-    puts "\n#{@mark} Won a game. Another game started!\n Press ctr+z to close a game \n "
-    @game_won = true
+    puts "      \n#{@mark} Won a game!!!!!!!!"
     print_3x3
+    @game_won = true
+    puts "\nAnother game started! Press ctr+z to close a game.\n\n"
   end
 
   def play_game
